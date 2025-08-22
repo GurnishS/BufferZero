@@ -1,0 +1,554 @@
+2025-08-22 16:16:37,421 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:16:57,916 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:18:57,351 - bufferzero - ERROR - ❌ Error verifying token: invalid JWT: unable to parse or verify signature, token has invalid claims: token is expired
+2025-08-22 16:18:57,356 - bufferzero - ERROR - Traceback (most recent call last):
+  File "/home/gurnish/Desktop/BufferZero/.venv/lib/python3.13/site-packages/supabase_auth/_sync/gotrue_base_api.py", line 120, in _request
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/gurnish/Desktop/BufferZero/.venv/lib/python3.13/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '403 Forbidden' for url 'https://rwnparhykrxgdbduoqvy.supabase.co/auth/v1/user'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/gurnish/Desktop/BufferZero/server/app/middleware/authorize.py", line 16, in verify_token
+    user_response = supabase.auth.get_user(token)
+  File "/home/gurnish/Desktop/BufferZero/.venv/lib/python3.13/site-packages/supabase_auth/_sync/gotrue_client.py", line 647, in get_user
+    return self._request("GET", "user", jwt=jwt, xform=parse_user_response)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gurnish/Desktop/BufferZero/.venv/lib/python3.13/site-packages/supabase_auth/_sync/gotrue_base_api.py", line 125, in _request
+    raise handle_exception(e)
+supabase_auth.errors.AuthApiError: invalid JWT: unable to parse or verify signature, token has invalid claims: token is expired
+
+2025-08-22 16:19:41,859 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:19:48,502 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:20:14,342 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:20:18,989 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:20:20,631 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:20:24,572 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:23:59,799 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:25:04,780 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:26:28,493 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:26:32,123 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:26:45,882 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:27:03,872 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:27:08,311 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:27:26,075 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:27:52,901 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:28:05,169 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:28:06,306 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:28:08,751 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:28:09,884 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:28:11,020 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:28:17,468 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:28:30,938 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:28:36,877 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:28:47,141 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:28:53,300 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:29:30,865 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:29:33,302 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:29:34,947 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:29:37,891 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:29:42,534 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:29:46,976 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:29:49,111 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:29:51,547 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:29:56,687 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:29:59,620 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:30:04,267 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:30:07,702 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:30:10,138 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:30:13,778 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:30:19,229 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:30:20,680 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:30:22,115 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:30:26,249 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:30:45,048 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:30:47,982 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:31:25,550 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:32:30,371 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:32:36,531 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:32:37,962 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:34:50,402 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:35:11,416 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:35:16,863 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:35:20,628 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:35:22,394 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:35:24,401 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:35:25,654 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:35:28,586 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:35:34,751 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:35:37,743 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:35:44,031 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:35:52,495 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:35:58,939 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:36:03,584 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:36:06,093 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:36:31,987 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:36:38,761 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:36:42,788 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:36:44,551 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:36:50,108 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:37:04,392 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:40:08,066 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:40:09,215 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:40:10,457 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:40:11,594 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:40:31,096 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:40:32,594 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:40:39,042 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:40:53,326 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:40:58,487 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:41:03,131 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:41:06,064 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:41:40,646 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:43:07,820 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:43:09,086 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:43:12,238 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:43:13,378 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:43:24,181 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:43:28,449 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:43:30,478 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:43:33,227 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:43:41,767 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:43:44,529 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:43:48,304 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:43:54,597 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:43:55,866 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:43:57,119 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:43:59,616 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:44:05,781 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:44:08,216 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:44:22,986 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:46:29,344 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:46:30,994 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:48:08,941 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:48:12,181 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:48:17,204 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:48:25,003 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:48:34,798 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:48:41,834 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:49:27,760 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:49:29,704 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:49:44,175 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:50:59,211 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:51:17,706 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:51:18,851 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:51:27,312 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:51:28,247 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:51:35,200 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:51:43,362 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:51:46,397 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:51:47,630 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:51:50,569 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:51:54,513 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:52:13,797 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:52:24,279 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:52:26,742 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:52:30,002 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:52:35,274 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:52:36,774 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:52:39,282 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:52:45,567 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:53:05,378 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:53:27,394 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:53:29,536 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:54:43,436 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:54:51,894 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:54:56,433 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:55:02,881 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:55:05,155 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:55:06,588 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:55:07,527 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:55:13,692 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:55:15,945 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:55:17,951 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:55:21,104 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:55:26,874 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:55:28,510 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:55:31,460 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:55:32,394 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:55:41,554 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:55:42,815 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:55:46,570 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:55:51,015 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:56:10,524 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:56:14,291 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:56:15,799 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:56:18,443 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:56:19,580 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:56:21,214 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:56:31,982 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:56:33,122 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:56:36,568 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:56:39,514 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:56:45,978 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:56:48,131 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:56:51,400 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:57:01,685 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:57:07,970 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:59:14,361 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:59:18,815 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:59:20,257 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:59:26,715 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:59:29,653 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:59:33,187 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:59:35,188 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:59:42,346 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:59:47,293 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 16:59:49,807 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:00:26,977 - bufferzero - ERROR - Error searching YouTube videos for query 'punjabi song': 'YoutubeService' object has no attribute '_executor'
+2025-08-22 17:00:26,978 - bufferzero - ERROR - Traceback (most recent call last):
+  File "/home/gurnish/Desktop/BufferZero/server/app/services/yt_service.py", line 210, in search_videos
+    info = await loop.run_in_executor(self._executor, search_in_thread)
+                                      ^^^^^^^^^^^^^^
+AttributeError: 'YoutubeService' object has no attribute '_executor'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/gurnish/Desktop/BufferZero/server/app/routes/youtube.py", line 93, in search_youtube_videos
+    results = await yt.search_videos(query, max_results)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gurnish/Desktop/BufferZero/server/app/services/yt_service.py", line 227, in search_videos
+    raise ApiError(status_code=500, message="Failed to search YouTube videos", error_code="SEARCH_ERROR")
+app.utils.api_error.ApiError: SEARCH_ERROR - 500 - Failed to search YouTube videos
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/gurnish/Desktop/BufferZero/server/app/utils/async_handler.py", line 11, in wrapper
+    return await func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gurnish/Desktop/BufferZero/server/app/routes/youtube.py", line 97, in search_youtube_videos
+    raise ApiError(status_code=500, message="Failed to search videos", error_code="VIDEO_SEARCH_ERROR")
+app.utils.api_error.ApiError: VIDEO_SEARCH_ERROR - 500 - Failed to search videos
+
+2025-08-22 17:01:10,953 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:24:09,993 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:25:54,213 - bufferzero - ERROR - Error searching YouTube videos for query 'punjabi song': 'YoutubeService' object has no attribute '_executor'
+2025-08-22 17:25:54,214 - bufferzero - ERROR - Traceback (most recent call last):
+  File "/home/gurnish/Desktop/BufferZero/server/app/services/yt_service.py", line 210, in search_videos
+    info = await loop.run_in_executor(self._executor, search_in_thread)
+                                      ^^^^^^^^^^^^^^
+AttributeError: 'YoutubeService' object has no attribute '_executor'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/gurnish/Desktop/BufferZero/server/app/routes/youtube.py", line 93, in search_youtube_videos
+    results = await yt.search_videos(query, max_results)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gurnish/Desktop/BufferZero/server/app/services/yt_service.py", line 227, in search_videos
+    raise ApiError(status_code=500, message="Failed to search YouTube videos", error_code="SEARCH_ERROR")
+app.utils.api_error.ApiError: SEARCH_ERROR - 500 - Failed to search YouTube videos
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/gurnish/Desktop/BufferZero/server/app/utils/async_handler.py", line 11, in wrapper
+    return await func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gurnish/Desktop/BufferZero/server/app/routes/youtube.py", line 97, in search_youtube_videos
+    raise ApiError(status_code=500, message="Failed to search videos", error_code="VIDEO_SEARCH_ERROR")
+app.utils.api_error.ApiError: VIDEO_SEARCH_ERROR - 500 - Failed to search videos
+
+2025-08-22 17:27:23,236 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:27:24,381 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:27:26,392 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:27:34,174 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:34:38,526 - bufferzero - ERROR - ❌ Error verifying token: invalid JWT: unable to parse or verify signature, token has invalid claims: token is expired
+2025-08-22 17:34:38,564 - bufferzero - ERROR - Traceback (most recent call last):
+  File "/home/gurnish/Desktop/BufferZero/.venv/lib/python3.13/site-packages/supabase_auth/_sync/gotrue_base_api.py", line 120, in _request
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/gurnish/Desktop/BufferZero/.venv/lib/python3.13/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '403 Forbidden' for url 'https://rwnparhykrxgdbduoqvy.supabase.co/auth/v1/user'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/gurnish/Desktop/BufferZero/server/app/middleware/authorize.py", line 16, in verify_token
+    user_response = supabase.auth.get_user(token)
+  File "/home/gurnish/Desktop/BufferZero/.venv/lib/python3.13/site-packages/supabase_auth/_sync/gotrue_client.py", line 647, in get_user
+    return self._request("GET", "user", jwt=jwt, xform=parse_user_response)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gurnish/Desktop/BufferZero/.venv/lib/python3.13/site-packages/supabase_auth/_sync/gotrue_base_api.py", line 125, in _request
+    raise handle_exception(e)
+supabase_auth.errors.AuthApiError: invalid JWT: unable to parse or verify signature, token has invalid claims: token is expired
+
+2025-08-22 17:36:18,546 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:36:20,397 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:36:22,663 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:36:26,434 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:36:32,209 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:36:37,245 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:36:49,058 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:36:52,565 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:37:08,436 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:37:13,284 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:37:28,092 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:37:30,841 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:37:32,282 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:38:02,831 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:38:04,469 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:38:21,198 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:38:38,401 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:38:42,175 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:39:04,704 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:39:10,173 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:39:13,834 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:39:15,078 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:39:17,589 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:39:21,113 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:39:22,255 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:39:23,702 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:39:27,152 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:39:30,606 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:39:32,051 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:39:38,089 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:39:40,043 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:39:48,501 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:40:37,715 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:41:28,674 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:41:29,672 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:41:54,734 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:42:00,905 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:42:03,555 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:43:23,192 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:43:24,673 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:44:34,951 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:44:38,890 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:46:03,370 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:46:09,023 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:46:16,476 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:47:45,861 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:47:51,000 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:47:57,157 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:47:58,802 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:48:01,257 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:49:01,448 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:50:00,699 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:50:40,839 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:52:15,577 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:52:16,519 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:52:30,609 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:52:32,368 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:52:48,435 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:53:12,842 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:53:14,092 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:53:16,354 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:53:19,863 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:53:22,372 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:53:37,212 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:53:43,744 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:53:56,061 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:54:05,109 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:54:18,444 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:54:20,100 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:54:24,888 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:55:07,994 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:55:12,145 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 17:55:15,093 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:05:26,617 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:05:27,763 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:05:40,082 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:06:01,229 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:06:05,247 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:06:07,508 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:06:11,030 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:06:52,519 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:06:58,557 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:07:10,648 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:10:48,026 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:10:49,378 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:11:43,427 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:11:57,774 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:12:04,544 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:12:08,579 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:12:10,841 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:12:13,341 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:12:29,943 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:12:37,736 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:12:58,852 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:13:07,393 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:13:15,322 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:15:44,405 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:15:53,659 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:15:55,676 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:15:58,685 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:16:16,046 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:16:18,796 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:16:22,954 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:16:27,203 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:16:35,699 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:16:37,935 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:16:39,089 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:16:40,528 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:19:09,060 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:19:47,286 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:20:02,868 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:20:04,329 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:20:18,524 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:26:00,289 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:26:03,042 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:26:05,490 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:26:12,455 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:26:20,154 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:26:21,522 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:26:22,874 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:29:54,980 - bufferzero - INFO - Cache miss for video ID: pJftkROOh2s, fetching from yt-dlp
+2025-08-22 18:29:54,981 - bufferzero - ERROR - Traceback (most recent call last):
+  File "/home/gurnish/Desktop/BufferZero/server/app/routes/youtube.py", line 263, in get_youtube_info
+    video_info = await yt.get_video_info(video_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gurnish/Desktop/BufferZero/server/app/services/yt_service.py", line 388, in get_video_info
+    url = self.get_video_url(video_id)
+          ^^^^^^^^^^^^^^^^^^
+AttributeError: 'YoutubeService' object has no attribute 'get_video_url'. Did you mean: 'get_video_info'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/gurnish/Desktop/BufferZero/server/app/utils/async_handler.py", line 11, in wrapper
+    return await func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gurnish/Desktop/BufferZero/server/app/routes/youtube.py", line 267, in get_youtube_info
+    raise ApiError(status_code=500, message="Failed to get video information", error_code="VIDEO_INFO_ERROR")
+app.utils.api_error.ApiError: VIDEO_INFO_ERROR - 500 - Failed to get video information
+
+2025-08-22 18:31:14,687 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:31:16,600 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:31:21,366 - bufferzero - INFO - Cache miss for video ID: pJftkROOh2s, fetching from yt-dlp
+2025-08-22 18:31:21,366 - bufferzero - INFO - Fetching video info for url: https://www.youtube.com/watch?v=pJftkROOh2s
+2025-08-22 18:31:42,649 - bufferzero - INFO - Video format 144p is available for video ID: pJftkROOh2s
+2025-08-22 18:31:42,650 - bufferzero - INFO - Video format 240p is available for video ID: pJftkROOh2s
+2025-08-22 18:31:42,650 - bufferzero - INFO - Video format 360p is available for video ID: pJftkROOh2s
+2025-08-22 18:31:42,650 - bufferzero - INFO - Video format 480p is available for video ID: pJftkROOh2s
+2025-08-22 18:31:42,650 - bufferzero - INFO - Video format 720p is available for video ID: pJftkROOh2s
+2025-08-22 18:31:42,650 - bufferzero - INFO - Video format 1080p is available for video ID: pJftkROOh2s
+2025-08-22 18:31:42,650 - bufferzero - WARNING - Video format 1440p not available for video ID: pJftkROOh2s
+2025-08-22 18:31:42,650 - bufferzero - WARNING - Video format 2160p not available for video ID: pJftkROOh2s
+2025-08-22 18:31:42,650 - bufferzero - INFO - Audio quality low is available for video ID: pJftkROOh2s
+2025-08-22 18:31:42,650 - bufferzero - INFO - Audio quality medium is available for video ID: pJftkROOh2s
+2025-08-22 18:31:42,650 - bufferzero - INFO - Audio quality high is available for video ID: pJftkROOh2s
+2025-08-22 18:31:43,255 - bufferzero - INFO - Stored video info for video: pJftkROOh2s
+2025-08-22 18:31:43,255 - bufferzero - INFO - Video information stored successfully for video ID: pJftkROOh2s
+2025-08-22 18:34:32,177 - bufferzero - INFO - Cache hit for video ID: pJftkROOh2s
+2025-08-22 18:36:32,613 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:36:35,698 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:36:46,876 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:36:56,924 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:37:07,676 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:37:16,252 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:37:22,551 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:37:28,313 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:37:29,981 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:37:31,152 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:37:33,302 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:37:34,822 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:37:41,144 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:37:55,391 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:38:00,400 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:38:17,304 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:38:24,019 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:38:30,288 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:38:31,796 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:38:42,367 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:38:48,068 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:39:00,267 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:42:05,636 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:42:11,098 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:51:09,012 - bufferzero - ERROR - ❌ Error verifying token: invalid JWT: unable to parse or verify signature, token has invalid claims: token is expired
+2025-08-22 18:51:09,013 - bufferzero - ERROR - Traceback (most recent call last):
+  File "/home/gurnish/Desktop/BufferZero/.venv/lib/python3.13/site-packages/supabase_auth/_sync/gotrue_base_api.py", line 120, in _request
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/gurnish/Desktop/BufferZero/.venv/lib/python3.13/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '403 Forbidden' for url 'https://rwnparhykrxgdbduoqvy.supabase.co/auth/v1/user'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/gurnish/Desktop/BufferZero/server/app/middleware/authorize.py", line 16, in verify_token
+    user_response = supabase.auth.get_user(token)
+  File "/home/gurnish/Desktop/BufferZero/.venv/lib/python3.13/site-packages/supabase_auth/_sync/gotrue_client.py", line 647, in get_user
+    return self._request("GET", "user", jwt=jwt, xform=parse_user_response)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gurnish/Desktop/BufferZero/.venv/lib/python3.13/site-packages/supabase_auth/_sync/gotrue_base_api.py", line 125, in _request
+    raise handle_exception(e)
+supabase_auth.errors.AuthApiError: invalid JWT: unable to parse or verify signature, token has invalid claims: token is expired
+
+2025-08-22 18:52:29,013 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:52:33,707 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:52:37,867 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:53:33,921 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:53:37,175 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:53:44,471 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:54:36,498 - bufferzero - INFO - Cache hit for playlist ID: PLFFyMei_d85U5RQdXjRQ5F012qr4vSmSa
+2025-08-22 18:56:45,572 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:56:49,023 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:56:50,279 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:56:54,028 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:57:36,668 - bufferzero - ERROR - ❌ Error verifying token: invalid JWT: unable to parse or verify signature, token has invalid claims: token is expired
+2025-08-22 18:57:36,670 - bufferzero - ERROR - Traceback (most recent call last):
+  File "/home/gurnish/Desktop/BufferZero/.venv/lib/python3.13/site-packages/supabase_auth/_sync/gotrue_base_api.py", line 120, in _request
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/gurnish/Desktop/BufferZero/.venv/lib/python3.13/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '403 Forbidden' for url 'https://rwnparhykrxgdbduoqvy.supabase.co/auth/v1/user'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/gurnish/Desktop/BufferZero/server/app/middleware/authorize.py", line 16, in verify_token
+    user_response = supabase.auth.get_user(token)
+  File "/home/gurnish/Desktop/BufferZero/.venv/lib/python3.13/site-packages/supabase_auth/_sync/gotrue_client.py", line 647, in get_user
+    return self._request("GET", "user", jwt=jwt, xform=parse_user_response)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gurnish/Desktop/BufferZero/.venv/lib/python3.13/site-packages/supabase_auth/_sync/gotrue_base_api.py", line 125, in _request
+    raise handle_exception(e)
+supabase_auth.errors.AuthApiError: invalid JWT: unable to parse or verify signature, token has invalid claims: token is expired
+
+2025-08-22 18:57:54,366 - bufferzero - INFO - Cache hit for video ID: pJftkROOh2s
+2025-08-22 18:58:12,166 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:58:17,153 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 18:58:22,183 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:00:07,732 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:00:11,407 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:00:14,366 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:00:15,316 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:00:21,280 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:00:33,787 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:00:39,471 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:00:41,461 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:00:43,474 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:00:58,747 - bufferzero - INFO - Cache hit for playlist ID: PLFFyMei_d85U5RQdXjRQ5F012qr4vSmSa
+2025-08-22 19:05:27,769 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:05:30,940 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:05:32,888 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:05:59,955 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:06:02,912 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:06:12,147 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:06:27,646 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:06:29,040 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:06:30,403 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:06:38,615 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:06:40,468 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:06:48,953 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:06:59,704 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:07:00,581 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:07:03,449 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:07:12,164 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:07:14,533 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:15:12,068 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:17:23,065 - bufferzero - INFO - ✅ Supabase client initialized successfully
+2025-08-22 19:18:38,443 - bufferzero - INFO - ✅ Supabase client initialized successfully
