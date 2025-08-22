@@ -1,0 +1,38 @@
+{
+    "videos": [
+        {
+            "id": 1,
+            "site": "Youtube",
+            "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        },
+        {
+            "id": 2,
+            "site": "SoundCloud",
+            "url": "https://soundcloud.com/new-song-2025-388792820/sohni-lagdi-diljit-dosanjh-new-punjabi-song-2025"
+        },{
+            "id": 3,
+            "site": "Dailymotion",
+            "url": "https://www.dailymotion.com/video/x9p9e64"
+        },
+        {
+            "id": 4,
+            "site": "Reels",
+            "url": "https://www.instagram.com/raja_yadav_fitness/reel/DNjzPFCoQMd/"
+        },
+        {
+            "id": 5,
+            "site": "Facebook",
+            "url": "https://www.facebook.com/100002605865239/videos/775595354825688/?__so__=discover&__rv__=video_home_www_loe_popular_videos&__cft__[0]=AZWjK2_hy_yXK6noKf5LndNfUhGdjxuYUyHJ82IwCGVsiItSKpxZz5bJOHDTW1t5oP7A2cVCyWhWUXVvOcItbRqydSymfjrAl4Hjvj-_i1SlCpXKYjOVFv8_ERi2cVtUOeU098BOXCPo3NJk-54MKqmkUT0lYzNXbdlCJF42O5zPkQ"
+        },
+        {
+            "id": 6,
+            "site": "Plex",
+            "url": "https://watch.plex.tv/watch/show/z-nation?uri=provider%3A%2F%2Ftv.plex.provider.vod%2Flibrary%2Fmetadata%2F5d9c0847e98e47001eb0b921"
+        },
+        {
+            "id": 7,
+            "site": "MX Player",
+            "url": "https://www.mxplayer.in/show/watch-bindiya-ke-bahubali/season-1/the-davan-empire-online-fdbe24838023f11187378ff48639291c?watch=true"
+        }
+    ]
+}
