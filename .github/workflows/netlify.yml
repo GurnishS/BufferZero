@@ -25,11 +25,13 @@ jobs:
         run: flutter pub get
 
       - name: Build Flutter Web
-        run: flutter build web --release \
-          --dart-define=IS_PRODUCTION=true \
-          --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }} \
-          --dart-define=SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }} \
-          --dart-define=BACKEND_URL=${{ secrets.BACKEND_URL }}
+        run: |
+          flutter build web --release \
+            --dart-define=IS_PRODUCTION=true \
+            --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }} \
+            --dart-define=SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }} \
+            --dart-define=BACKEND_URL=${{ secrets.BACKEND_URL }}
+      
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.0.0
