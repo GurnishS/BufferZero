@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class AppSecrets {
   // Environment configuration
@@ -9,9 +8,11 @@ class AppSecrets {
   );
 
   // Supabase configuration (safe for all platforms)
-  static final String supabaseUrl = dotenv.env['SUPABASE_URL'] ?? '';
-  static final String supabaseAnonKey = dotenv.env['SUPABASE_ANON_KEY'] ?? '';
-  static final String backendUrl = dotenv.env['BACKEND_URL'] ?? '';
+  static const String supabaseUrl = String.fromEnvironment('SUPABASE_URL');
+  static const String supabaseAnonKey = String.fromEnvironment(
+    'SUPABASE_ANON_KEY',
+  );
+  static const String backendUrl = String.fromEnvironment('BACKEND_URL');
 
   // Razorpay configuration (platform-specific)
   // ⚠️ Key Secret is NEVER exposed on web builds for security
@@ -21,7 +22,7 @@ class AppSecrets {
       return null;
     }
     // For mobile/desktop builds, use environment variable
-    return dotenv.env['RAZORPAY_KEY_ID'];
+    return const String.fromEnvironment('RAZORPAY_KEY_ID');
   }
 
   // static String? get razorpayKeySecret {

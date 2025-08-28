@@ -9,14 +9,12 @@ import 'package:go_router/go_router.dart';
 import 'package:bufferzero/core/theme/app_colors.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 // Conditional import for web-specific plugins
 import 'web_url_strategy.dart'
     if (dart.library.io) 'web_url_strategy_stub.dart';
 
 void main() async {
-  await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
 
   // // Suppress mouse tracking assertions on desktop
