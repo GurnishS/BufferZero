@@ -113,21 +113,4 @@ class AuthRepositoryImpl implements AuthRepository {
       return left(Failure(e.toString()));
     }
   }
-
-  @override
-  Future<Either<Failure, bool>> checkEmailVerificationStatus({
-    required String email,
-  }) async {
-    try {
-      final isVerified = await authRemoteDataSource
-          .checkEmailVerificationStatus(email: email);
-      return right(isVerified);
-    } on sb.AuthException catch (e) {
-      return left(Failure(e.message));
-    } on ServerException catch (e) {
-      return left(Failure(e.message));
-    } catch (e) {
-      return left(Failure(e.toString()));
-    }
-  }
 }

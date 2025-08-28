@@ -25,7 +25,6 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage>
     with TickerProviderStateMixin, AuthPageAnimationMixin {
-
   @override
   void initState() {
     super.initState();
@@ -45,9 +44,9 @@ class _SignInPageState extends State<SignInPage>
   }
 
   void _handleAuthFailure(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 
   @override
@@ -88,7 +87,6 @@ class SignInFormContent extends StatefulWidget {
 
 class _SignInFormContentState extends State<SignInFormContent>
     with TickerProviderStateMixin, AuthStaggerAnimationMixin {
-  
   bool _isForgetPasswordMode = false;
 
   @override
@@ -130,7 +128,10 @@ class _SignInFormContentState extends State<SignInFormContent>
         const SizedBox(height: 16),
         buildAnimatedWidget(2, _buildDescription(context)),
         const SizedBox(height: AuthConstants.largePadding),
-        buildAnimatedWidget(3, SignInForm(onForgotPassword: _toggleForgetPassword)),
+        buildAnimatedWidget(
+          3,
+          SignInForm(onForgotPassword: _toggleForgetPassword),
+        ),
         const SizedBox(height: AuthConstants.largePadding),
         buildAnimatedWidget(4, _buildDividerAndSocialButtons(context)),
         const SizedBox(height: AuthConstants.defaultPadding),
@@ -141,17 +142,11 @@ class _SignInFormContentState extends State<SignInFormContent>
   }
 
   Widget _buildTitle(BuildContext context) {
-    return Text(
-      "Sign In",
-      style: AuthTextStyles.title(context),
-    );
+    return Text("Sign In", style: AuthTextStyles.title(context));
   }
 
   Widget _buildSubtitle(BuildContext context) {
-    return Text(
-      "Welcome Back",
-      style: AuthTextStyles.subtitle(context),
-    );
+    return Text("Welcome Back", style: AuthTextStyles.subtitle(context));
   }
 
   Widget _buildDescription(BuildContext context) {
@@ -168,8 +163,10 @@ class _SignInFormContentState extends State<SignInFormContent>
         const AuthDivider(text: "Or continue with"),
         const SizedBox(height: 16),
         AuthSocialButtonRow(
-          onGooglePressed: () => context.read<AuthBloc>().add(AuthSignInWithGoogle()),
-          onAnonymousPressed: () => context.read<AuthBloc>().add(AuthSignInAnonymously()),
+          onGooglePressed: () =>
+              context.read<AuthBloc>().add(AuthSignInWithGoogle()),
+          onAnonymousPressed: () =>
+              context.read<AuthBloc>().add(AuthSignInAnonymously()),
         ),
       ],
     );
@@ -220,10 +217,7 @@ class _SignInFormState extends State<SignInForm> {
     }
 
     context.read<AuthBloc>().add(
-      AuthSignIn(
-        email: formData.email,
-        password: formData.password,
-      ),
+      AuthSignIn(email: formData.email, password: formData.password),
     );
   }
 
@@ -254,10 +248,7 @@ class _SignInFormState extends State<SignInForm> {
           const SizedBox(height: 16),
           _buildForgotPasswordLink(context),
           const SizedBox(height: AuthConstants.defaultPadding),
-          AuthPrimaryButton(
-            text: "Continue",
-            onPressed: _handleSignIn,
-          ),
+          AuthPrimaryButton(text: "Continue", onPressed: _handleSignIn),
         ],
       ),
     );
@@ -269,10 +260,7 @@ class _SignInFormState extends State<SignInForm> {
       children: [
         TextButton(
           onPressed: widget.onForgotPassword,
-          child: Text(
-            "Forgot Password?",
-            style: AuthTextStyles.link(context),
-          ),
+          child: Text("Forgot Password?", style: AuthTextStyles.link(context)),
         ),
       ],
     );
@@ -349,10 +337,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const SizedBox(height: AuthConstants.largePadding),
-        AuthBackHeader(
-          title: "Forgot Password?",
-          onBack: widget.onBack,
-        ),
+        AuthBackHeader(title: "Forgot Password?", onBack: widget.onBack),
         const SizedBox(height: AuthConstants.largePadding),
         _buildDescription(context),
         const SizedBox(height: AuthConstants.largePadding),

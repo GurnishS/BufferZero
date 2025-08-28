@@ -1,5 +1,8 @@
+import 'dart:async';
 import 'package:bufferzero/core/error/exceptions.dart';
 import 'package:bufferzero/features/auth/data/models/user_model.dart';
+import 'package:flutter/foundation.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract interface class AuthRemoteDataSource {
@@ -21,7 +24,6 @@ abstract interface class AuthRemoteDataSource {
   Future<UserModel?> getCurrentUserData();
   Future<void> logout();
   Future<void> resendEmailVerification({required String email});
-  Future<bool> checkEmailVerificationStatus({required String email});
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -33,7 +35,92 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<UserModel> signInWithGoogle() async {
-    return UserModel(id: "test", email: "test@test.com", name: "Test User");
+    try {
+      print('Starting Google Sign-In...');
+
+      // For web, use Supabase's native OAuth flow instead of google_sign_in plugin
+      // This avoids the ID token issues on web
+      if (kIsWeb) {
+        print('Using Supabase OAuth for web...');
+
+        await supabaseClient.auth.signInWithOAuth(
+          OAuthProvider.google,
+          redirectTo: '${Uri.base.origin}/sign-in?redirect=/dashboard',
+        );
+
+        // The OAuth flow will redirect to Google and back
+        // We need to handle this differently - the auth state change will be handled
+        // by the main app listener, so we throw a special exception to indicate
+        // that the OAuth flow was initiated
+        throw 'OAuth flow initiated - please wait for redirect';
+      } else {
+        // For mobile platforms, use google_sign_in plugin
+        print('Using google_sign_in plugin for mobile...');
+
+        /// Web Client ID that you registered with Google Cloud.
+        const webClientId =
+            '827146341594-cqm5rgvj5nf70tt5kjveeijdhgto70ud.apps.googleusercontent.com';
+
+        /// iOS Client ID that you registered with Google Cloud.
+        const iosClientId =
+            '827146341594-se5r95rug7iv02vkkbgfd4dah6h03l88.apps.googleusercontent.com';
+
+        final GoogleSignIn googleSignIn = GoogleSignIn(
+          clientId: iosClientId,
+          serverClientId: webClientId,
+          scopes: ['email', 'profile', 'openid'],
+        );
+
+        final googleUser = await googleSignIn.signIn();
+        if (googleUser == null) {
+          throw 'User cancelled Google Sign-In';
+        }
+
+        final googleAuth = await googleUser.authentication;
+        final accessToken = googleAuth.accessToken;
+        final idToken = googleAuth.idToken;
+
+        if (idToken == null) {
+          throw 'No ID Token found for mobile sign-in';
+        }
+
+        print('Authenticating with Supabase using mobile tokens...');
+        final response = await supabaseClient.auth.signInWithIdToken(
+          provider: OAuthProvider.google,
+          idToken: idToken,
+          accessToken: accessToken,
+        );
+
+        if (response.user == null) {
+          throw 'Failed to authenticate with Supabase.';
+        }
+
+        // Fetch user data from users table
+        try {
+          final userData = await supabaseClient
+              .from('users')
+              .select()
+              .eq('id', response.user!.id)
+              .single();
+
+          return UserModel.fromJson(
+            userData,
+          ).copyWith(email: response.user!.email);
+        } catch (e) {
+          return UserModel(
+            id: response.user!.id,
+            email: response.user!.email ?? googleUser.email,
+            name:
+                response.user!.userMetadata?['name'] ??
+                googleUser.displayName ??
+                'Google User',
+          );
+        }
+      }
+    } catch (e) {
+      print('Google Sign-In error: $e');
+      throw ServerException('Google Sign-In failed: ${e.toString()}');
+    }
   }
 
   @override
@@ -175,24 +262,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     } catch (e) {
       print("Error resending email verification: $e");
       throw ServerException(e.toString());
-    }
-  }
-
-  @override
-  Future<bool> checkEmailVerificationStatus({required String email}) async {
-    try {
-      // Fetch the latest user state from Supabase
-      final response = await supabaseClient.auth.getUser();
-      final currentUser = response.user;
-
-      if (currentUser != null && currentUser.emailConfirmedAt != null) {
-        return true; // ✅ Email verified
-      }
-
-      return false; // ❌ Email not verified yet
-    } catch (e) {
-      print("Error checking email verification: $e");
-      return false;
     }
   }
 }

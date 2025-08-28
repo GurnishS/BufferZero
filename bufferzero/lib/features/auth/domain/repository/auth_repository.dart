@@ -22,7 +22,4 @@ abstract interface class AuthRepository {
   Future<Either<Failure, void>> resendEmailVerification({
     required String email,
   });
-  Future<Either<Failure, bool>> checkEmailVerificationStatus({
-    required String email,
-  });
 }

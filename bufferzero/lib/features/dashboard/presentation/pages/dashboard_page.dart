@@ -1,9 +1,7 @@
 import 'package:bufferzero/core/common/cubit/app_user_cubit.dart';
 import 'package:bufferzero/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:bufferzero/features/dashboard/presentation/bloc/dashboard_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class DashboardPage extends StatelessWidget {
   final AppUserCubit appUserCubit;

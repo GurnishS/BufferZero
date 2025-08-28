@@ -68,8 +68,8 @@ class AppGoRouter {
           builder: (context, state) {
             final redirectUrl =
                 state.uri.queryParameters['redirect'] ?? '/dashboard';
-            final newSignUp = state.uri.queryParameters['new-sign-up'] == 'true';
-            print("New Sign Up: $newSignUp");
+            final newSignUp =
+                state.uri.queryParameters['new-sign-up'] == 'true';
             return SignInPage(redirectUrl: redirectUrl, newSignUp: newSignUp);
           },
         ),
