@@ -21,18 +21,17 @@ jobs:
         with:
           flutter-version: "3.35.1"
 
-      - name: Create .env file
-        run: |
-          echo "IS_PRODUCTION=true" >> .env
-          echo "SUPABASE_URL=${{ secrets.SUPABASE_URL }}" >> .env
-          echo "SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}" >> .env
-          echo "BACKEND_URL=${{ secrets.BACKEND_URL }}" >> .env
-
       - name: Install dependencies
         run: flutter pub get
 
       - name: Build Flutter Web
-        run: flutter build web --release
+        run: |
+          flutter build web --release \
+            --dart-define=IS_PRODUCTION=true \
+            --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }} \
+            --dart-define=SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }} \
+            --dart-define=BACKEND_URL=${{ secrets.BACKEND_URL }}
+      
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.0.0
