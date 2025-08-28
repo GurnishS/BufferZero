@@ -1,0 +1,98 @@
+import 'package:bufferzero/core/common/cubit/app_user_cubit.dart';
+import 'package:bufferzero/core/common/navigation/app_go_router.dart';
+import 'package:bufferzero/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:bufferzero/init_dependencies.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:bufferzero/core/theme/app_colors.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
+
+// Conditional import for web-specific plugins
+import 'web_url_strategy.dart'
+    if (dart.library.io) 'web_url_strategy_stub.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // // Suppress mouse tracking assertions on desktop
+  // if (kDebugMode) {
+  //   FlutterError.onError = (details) {
+  //     if (details.toString().contains('_debugDuringDeviceUpdate')) return;
+  //     FlutterError.presentError(details);
+  //   };
+  // }
+
+  //Configure URL strategy for web
+  configureUrlStrategy();
+
+  await initDependencies();
+
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: kIsWeb
+        ? HydratedStorageDirectory.web
+        : HydratedStorageDirectory((await getTemporaryDirectory()).path),
+  );
+
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => serviceLocator<AuthBloc>()),
+        BlocProvider(create: (_) => serviceLocator<AppUserCubit>()),
+        // BlocProvider(create: (_) => serviceLocator<UserPlansBloc>()),
+        // BlocProvider(create: (_) => serviceLocator<VideoInfoBloc>()),
+      ],
+      child: const MyApp(),
+    ),
+  );
+}
+
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late final GoRouter _router;
+  bool _hasInitializedAuth = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize router with AppUserCubit
+    _router = AppGoRouter.createRouter(serviceLocator<AppUserCubit>());
+
+    // Add AuthUserLoggedIn event after the first frame to check initial auth state
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!_hasInitializedAuth) {
+        context.read<AuthBloc>().add(AuthUserLoggedIn());
+        _hasInitializedAuth = true;
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      title: 'BufferZero',
+      debugShowCheckedModeBanner: false,
+      routerConfig: _router,
+      // --- Light Theme Definition ---
+      theme: ThemeData(
+        colorScheme: AppColors.lightColorScheme,
+        useMaterial3: true,
+      ),
+      // Dark Theme
+      darkTheme: ThemeData(
+        colorScheme: AppColors.darkColorScheme,
+        useMaterial3: true,
+      ),
+      // Automatically selects theme based on system settings
+      themeMode: ThemeMode.system,
+    );
+  }
+}
