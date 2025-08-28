@@ -18,9 +18,8 @@ class SignUpPage extends StatefulWidget {
   State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> 
+class _SignUpPageState extends State<SignUpPage>
     with TickerProviderStateMixin, AuthPageAnimationMixin {
-
   @override
   void initState() {
     super.initState();
@@ -40,9 +39,9 @@ class _SignUpPageState extends State<SignUpPage>
   }
 
   void _handleAuthFailure(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 
   @override
@@ -82,7 +81,6 @@ class SignUpFormContent extends StatefulWidget {
 
 class _SignUpFormContentState extends State<SignUpFormContent>
     with TickerProviderStateMixin, AuthStaggerAnimationMixin {
-  
   @override
   void initState() {
     super.initState();
@@ -96,9 +94,9 @@ class _SignUpFormContentState extends State<SignUpFormContent>
   }
 
   void _handleResendEmailVerificationFailure(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 
   void _resetAuthState() {
@@ -110,58 +108,54 @@ class _SignUpFormContentState extends State<SignUpFormContent>
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is AuthFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.message)),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.message)));
         } else if (state is AuthResendEmailVerificationFailure) {
           _handleResendEmailVerificationFailure(state.message);
         }
       },
       builder: (context, state) {
         if (state is EmailVerification) {
-          return EmailVerificationView(
-            onBack: _resetAuthState,
-            state: state,
-          );
+          return EmailVerificationView(onBack: _resetAuthState, state: state);
         }
 
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: AuthConstants.largePadding),
-            buildAnimatedWidget(0, _buildTitle(context)),
-            const SizedBox(height: 8),
-            buildAnimatedWidget(1, _buildSubtitle(context)),
-            const SizedBox(height: 16),
-            buildAnimatedWidget(2, _buildDescription(context)),
-            const SizedBox(height: AuthConstants.largePadding),
-            buildAnimatedWidget(3, const SignUpForm()),
-            const SizedBox(height: AuthConstants.largePadding),
-            buildAnimatedWidget(4, _buildDivider(context)),
-            const SizedBox(height: 16),
-            buildAnimatedWidget(5, _buildSocialButtons(context)),
-            const SizedBox(height: AuthConstants.defaultPadding),
-            buildAnimatedWidget(6, _buildNavigationText(context)),
-            const SizedBox(height: AuthConstants.largePadding),
-          ],
+        return Center(
+          child: Container(
+            constraints: BoxConstraints(maxWidth: 500),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: AuthConstants.largePadding),
+                buildAnimatedWidget(0, _buildTitle(context)),
+                const SizedBox(height: 8),
+                buildAnimatedWidget(1, _buildSubtitle(context)),
+                const SizedBox(height: 16),
+                buildAnimatedWidget(2, _buildDescription(context)),
+                const SizedBox(height: AuthConstants.largePadding),
+                buildAnimatedWidget(3, const SignUpForm()),
+                const SizedBox(height: AuthConstants.largePadding),
+                buildAnimatedWidget(4, _buildDivider(context)),
+                const SizedBox(height: 16),
+                buildAnimatedWidget(5, _buildSocialButtons(context)),
+                const SizedBox(height: AuthConstants.defaultPadding),
+                buildAnimatedWidget(6, _buildNavigationText(context)),
+                const SizedBox(height: AuthConstants.largePadding),
+              ],
+            ),
+          ),
         );
       },
     );
   }
 
   Widget _buildTitle(BuildContext context) {
-    return Text(
-      "Sign Up",
-      style: AuthTextStyles.title(context),
-    );
+    return Text("Sign Up", style: AuthTextStyles.title(context));
   }
 
   Widget _buildSubtitle(BuildContext context) {
-    return Text(
-      "Create Account",
-      style: AuthTextStyles.subtitle(context),
-    );
+    return Text("Create Account", style: AuthTextStyles.subtitle(context));
   }
 
   Widget _buildDescription(BuildContext context) {
@@ -178,8 +172,10 @@ class _SignUpFormContentState extends State<SignUpFormContent>
 
   Widget _buildSocialButtons(BuildContext context) {
     return AuthSocialButtonRow(
-      onGooglePressed: () => context.read<AuthBloc>().add(AuthSignInWithGoogle()),
-      onAnonymousPressed: () => context.read<AuthBloc>().add(AuthSignInAnonymously()),
+      onGooglePressed: () =>
+          context.read<AuthBloc>().add(AuthSignInWithGoogle()),
+      onAnonymousPressed: () =>
+          context.read<AuthBloc>().add(AuthSignInAnonymously()),
     );
   }
 
@@ -269,10 +265,7 @@ class _SignUpFormState extends State<SignUpForm> {
             validator: AuthFormValidator.validatePassword,
           ),
           const SizedBox(height: AuthConstants.largePadding),
-          AuthPrimaryButton(
-            text: "Continue",
-            onPressed: _handleSignUp,
-          ),
+          AuthPrimaryButton(text: "Continue", onPressed: _handleSignUp),
         ],
       ),
     );
@@ -290,9 +283,7 @@ class EmailVerificationView extends StatelessWidget {
   });
 
   void _handleResendEmail(BuildContext context) {
-    context.read<AuthBloc>().add(
-      AuthResendEmailVerification(state.email),
-    );
+    context.read<AuthBloc>().add(AuthResendEmailVerification(state.email));
   }
 
   @override
@@ -302,10 +293,7 @@ class EmailVerificationView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const SizedBox(height: AuthConstants.largePadding),
-        AuthBackHeader(
-          title: "Verify Email",
-          onBack: onBack,
-        ),
+        AuthBackHeader(title: "Verify Email", onBack: onBack),
         const SizedBox(height: AuthConstants.largePadding),
         _buildEmailIcon(context),
         const SizedBox(height: AuthConstants.defaultPadding),

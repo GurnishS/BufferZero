@@ -25,10 +25,11 @@ class AuthResponsiveLayout extends StatelessWidget {
       opacity: fadeAnimation,
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final isLargeScreen = constraints.maxWidth > AuthConstants.largeScreenBreakpoint;
+          final isLargeScreen =
+              constraints.maxWidth > AuthConstants.largeScreenBreakpoint;
 
           if (isLargeScreen && showLottieAnimation) {
-            return _buildLargeScreenLayout();
+            return _buildLargeScreenLayout(context);
           } else {
             return _buildSmallScreenLayout(constraints);
           }
@@ -37,7 +38,7 @@ class AuthResponsiveLayout extends StatelessWidget {
     );
   }
 
-  Widget _buildLargeScreenLayout() {
+  Widget _buildLargeScreenLayout(BuildContext context) {
     return Row(
       children: [
         // Left half: Lottie animation
@@ -49,7 +50,7 @@ class AuthResponsiveLayout extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Container(
-                  color: const Color(0xFF4285F4).withAlpha(200), // Google blue
+                  color: Theme.of(context).colorScheme.secondary, // Google blue
                   child: Lottie.asset(
                     'assets/animations/auth.json',
                     fit: BoxFit.contain,
@@ -88,9 +89,7 @@ class AuthResponsiveLayout extends StatelessWidget {
           scale: scaleAnimation,
           child: SingleChildScrollView(
             child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: constraints.maxHeight,
-              ),
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
               child: IntrinsicHeight(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
@@ -122,10 +121,6 @@ class AuthPageScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: child,
-      ),
-    );
+    return Scaffold(body: SafeArea(child: child));
   }
 }

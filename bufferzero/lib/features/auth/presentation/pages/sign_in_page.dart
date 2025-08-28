@@ -113,31 +113,36 @@ class _SignInFormContentState extends State<SignInFormContent>
       return ForgetPasswordView(onBack: _toggleForgetPassword);
     }
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        if (widget.newSignUp) ...[
-          const NewSignUpMessage(),
-          const SizedBox(height: 16),
-        ],
-        const SizedBox(height: AuthConstants.largePadding),
-        buildAnimatedWidget(0, _buildTitle(context)),
-        const SizedBox(height: 8),
-        buildAnimatedWidget(1, _buildSubtitle(context)),
-        const SizedBox(height: 16),
-        buildAnimatedWidget(2, _buildDescription(context)),
-        const SizedBox(height: AuthConstants.largePadding),
-        buildAnimatedWidget(
-          3,
-          SignInForm(onForgotPassword: _toggleForgetPassword),
+    return Center(
+      child: Container(
+        constraints: BoxConstraints(maxWidth: 500),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            if (widget.newSignUp) ...[
+              const NewSignUpMessage(),
+              const SizedBox(height: 16),
+            ],
+            const SizedBox(height: AuthConstants.largePadding),
+            buildAnimatedWidget(0, _buildTitle(context)),
+            const SizedBox(height: 8),
+            buildAnimatedWidget(1, _buildSubtitle(context)),
+            const SizedBox(height: 16),
+            buildAnimatedWidget(2, _buildDescription(context)),
+            const SizedBox(height: AuthConstants.largePadding),
+            buildAnimatedWidget(
+              3,
+              SignInForm(onForgotPassword: _toggleForgetPassword),
+            ),
+            const SizedBox(height: AuthConstants.largePadding),
+            buildAnimatedWidget(4, _buildDividerAndSocialButtons(context)),
+            const SizedBox(height: AuthConstants.defaultPadding),
+            buildAnimatedWidget(5, _buildNavigationText(context)),
+            const SizedBox(height: AuthConstants.largePadding),
+          ],
         ),
-        const SizedBox(height: AuthConstants.largePadding),
-        buildAnimatedWidget(4, _buildDividerAndSocialButtons(context)),
-        const SizedBox(height: AuthConstants.defaultPadding),
-        buildAnimatedWidget(5, _buildNavigationText(context)),
-        const SizedBox(height: AuthConstants.largePadding),
-      ],
+      ),
     );
   }
 
