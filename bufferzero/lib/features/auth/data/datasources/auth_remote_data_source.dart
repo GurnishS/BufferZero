@@ -265,7 +265,12 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
       final code = uri.queryParameters['code'];
       if (code == null) {
-        return Response.badRequest(body: 'Missing authorization code');
+        return Response.badRequest(
+          body: _buildErrorPage(
+            'Missing authorization code. Please try again.',
+          ),
+          headers: {'content-type': 'text/html'},
+        );
       }
 
       try {
@@ -277,14 +282,17 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         }
 
         return Response.ok(
-          'Authentication successful. You may close this tab.',
-          headers: {'content-type': 'text/plain'},
+          _buildSuccessPage(),
+          headers: {'content-type': 'text/html'},
         );
       } catch (e) {
         if (!completer.isCompleted) {
           completer.completeError(e);
         }
-        return Response.internalServerError(body: 'Authentication error: $e');
+        return Response.internalServerError(
+          body: _buildErrorPage('Authentication failed. Please try again.'),
+          headers: {'content-type': 'text/html'},
+        );
       }
     };
   }
@@ -314,5 +322,494 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         .single();
 
     return UserModel.fromJson(userData).copyWith(email: email);
+  }
+
+  /// Build responsive success page for OAuth callback
+  String _buildSuccessPage() {
+    return '''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication Successful</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 48px 32px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 480px;
+            width: 100%;
+            animation: slideUp 0.5s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #10B981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            animation: scaleIn 0.6s ease-out 0.2s both;
+        }
+        
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+        
+        .checkmark {
+            width: 32px;
+            height: 32px;
+            stroke: white;
+            stroke-width: 3;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        h1 {
+            color: #1F2937;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        
+        p {
+            color: #6B7280;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+        
+        .close-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            outline: none;
+        }
+        
+        .close-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .close-button:active {
+            transform: translateY(0);
+        }
+        
+        .footer {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid #E5E7EB;
+            color: #9CA3AF;
+            font-size: 14px;
+        }
+        
+        .brand {
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 32px 24px;
+                margin: 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .success-icon {
+                width: 64px;
+                height: 64px;
+            }
+            
+            .checkmark {
+                width: 24px;
+                height: 24px;
+            }
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
+            }
+            
+            .container {
+                background: #374151;
+                color: white;
+            }
+            
+            h1 {
+                color: #F9FAFB;
+            }
+            
+            p {
+                color: #D1D5DB;
+            }
+            
+            .footer {
+                border-top-color: #4B5563;
+                color: #9CA3AF;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-icon">
+            <svg class="checkmark" viewBox="0 0 24 24">
+                <polyline points="20,6 9,17 4,12"></polyline>
+            </svg>
+        </div>
+        
+        <h1>Login Successful!</h1>
+        <p>You have been successfully authenticated. You can now safely close this tab and return to the application.</p>
+        
+        <button class="close-button" onclick="closeTab()">
+            Close This Tab
+        </button>
+        
+        <div class="footer">
+            Powered by <span class="brand">BufferZero</span>
+        </div>
+    </div>
+    
+    <script>
+        function closeTab() {
+            // Try multiple methods to close the tab
+            if (window.opener) {
+                window.close();
+            } else {
+                // For tabs opened programmatically
+                window.open('', '_self', '');
+                window.close();
+            }
+            
+            // Fallback: Show message if tab cannot be closed
+            setTimeout(() => {
+                document.querySelector('.close-button').innerHTML = 'Please close this tab manually';
+                document.querySelector('.close-button').disabled = true;
+                document.querySelector('.close-button').style.opacity = '0.6';
+                document.querySelector('.close-button').style.cursor = 'not-allowed';
+            }, 1000);
+        }
+        
+        // Auto-close after 5 seconds if user doesn't click
+        setTimeout(() => {
+            closeTab();
+        }, 5000);
+        
+        // Add keyboard shortcut (Ctrl+W or Cmd+W)
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'w') {
+                closeTab();
+            }
+        });
+    </script>
+</body>
+</html>
+''';
+  }
+
+  /// Build responsive error page for OAuth callback
+  String _buildErrorPage(String errorMessage) {
+    return '''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication Error</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 48px 32px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 480px;
+            width: 100%;
+            animation: slideUp 0.5s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .error-icon {
+            width: 80px;
+            height: 80px;
+            background: #ef4444;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            animation: scaleIn 0.6s ease-out 0.2s both;
+        }
+        
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+        
+        .x-mark {
+            width: 32px;
+            height: 32px;
+            stroke: white;
+            stroke-width: 3;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        h1 {
+            color: #1F2937;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        
+        p {
+            color: #6B7280;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+        
+        .retry-button {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            outline: none;
+            margin-right: 12px;
+        }
+        
+        .close-button {
+            background: #6B7280;
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            outline: none;
+        }
+        
+        .retry-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+        }
+        
+        .close-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(107, 114, 128, 0.4);
+        }
+        
+        .retry-button:active, .close-button:active {
+            transform: translateY(0);
+        }
+        
+        .footer {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid #E5E7EB;
+            color: #9CA3AF;
+            font-size: 14px;
+        }
+        
+        .brand {
+            font-weight: 600;
+            color: #ef4444;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 32px 24px;
+                margin: 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .error-icon {
+                width: 64px;
+                height: 64px;
+            }
+            
+            .x-mark {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .retry-button, .close-button {
+                display: block;
+                width: 100%;
+                margin-bottom: 12px;
+                margin-right: 0;
+            }
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+            }
+            
+            .container {
+                background: #374151;
+                color: white;
+            }
+            
+            h1 {
+                color: #F9FAFB;
+            }
+            
+            p {
+                color: #D1D5DB;
+            }
+            
+            .footer {
+                border-top-color: #4B5563;
+                color: #9CA3AF;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-icon">
+            <svg class="x-mark" viewBox="0 0 24 24">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </div>
+        
+        <h1>Authentication Failed</h1>
+        <p>$errorMessage</p>
+        
+        <button class="retry-button" onclick="retryAuth()">
+            Try Again
+        </button>
+        <button class="close-button" onclick="closeTab()">
+            Close Tab
+        </button>
+        
+        <div class="footer">
+            Powered by <span class="brand">BufferZero</span>
+        </div>
+    </div>
+    
+    <script>
+        function retryAuth() {
+            window.location.reload();
+        }
+        
+        function closeTab() {
+            if (window.opener) {
+                window.close();
+            } else {
+                window.open('', '_self', '');
+                window.close();
+            }
+            
+            setTimeout(() => {
+                document.querySelector('.close-button').innerHTML = 'Please close this tab manually';
+                document.querySelector('.close-button').disabled = true;
+                document.querySelector('.close-button').style.opacity = '0.6';
+                document.querySelector('.close-button').style.cursor = 'not-allowed';
+            }, 1000);
+        }
+        
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'w') {
+                closeTab();
+            }
+        });
+    </script>
+</body>
+</html>
+''';
   }
 }
