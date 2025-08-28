@@ -1,5 +1,4 @@
-lib/core/secrets
-
+.env
 # Miscellaneous
 *.class
 *.log
