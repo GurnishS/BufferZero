@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 class MyInputField extends StatelessWidget {
   final TextEditingController inputController;
-  const MyInputField({Key? key, required this.inputController})
-    : super(key: key);
+  const MyInputField({super.key, required this.inputController});
 
   @override
   Widget build(BuildContext context) {
