@@ -68,7 +68,7 @@ class _MyAppState extends State<MyApp> {
 
     // Add AuthUserLoggedIn event after the first frame to check initial auth state
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!_hasInitializedAuth) {
+      if (!_hasInitializedAuth && mounted) {
         context.read<AuthBloc>().add(AuthUserLoggedIn());
         _hasInitializedAuth = true;
       }

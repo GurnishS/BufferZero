@@ -1,4 +1,6 @@
 import 'package:bufferzero/core/common/cubit/app_user_cubit.dart';
+import 'package:bufferzero/core/common/widgets/bottom_nav_bar.dart';
+import 'package:bufferzero/core/common/widgets/floating_download_button.dart';
 import 'package:bufferzero/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +13,9 @@ class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavBar(selectedIndex: 0),
+      floatingActionButton: FloatingDownloadButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,

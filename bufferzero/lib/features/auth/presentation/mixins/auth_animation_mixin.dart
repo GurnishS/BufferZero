@@ -41,7 +41,12 @@ mixin AuthPageAnimationMixin<T extends StatefulWidget>
       ),
     );
 
-    _mainAnimationController.forward();
+    // Only forward animation if widget is still mounted
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        _mainAnimationController.forward();
+      }
+    });
   }
 
   void disposeMainAnimations() {
@@ -92,12 +97,18 @@ mixin AuthStaggerAnimationMixin<T extends StatefulWidget>
       );
     });
 
-    _staggerController.forward();
+    // Only forward animation if widget is still mounted
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        _staggerController.forward();
+      }
+    });
   }
 
   Widget buildAnimatedWidget(int index, Widget child) {
     if (index >= _slideAnimations.length ||
         index >= _fadeAnimations.length ||
+        !mounted ||
         (!_staggerController.isCompleted && _staggerController.value == 0.0)) {
       return child;
     }

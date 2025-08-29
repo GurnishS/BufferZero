@@ -55,7 +55,7 @@ class AppColors {
     onError: Color(0xFF690005),
     errorContainer: Color(0xFF93000A),
     onErrorContainer: Color(0xFFFFDAD6),
-    surface: Color(0xFF181210),
+    surface: Color(0xFF121212),
     onSurface: Color(0xFFECE0DD),
     surfaceContainerHighest: Color(0xFF52433F),
     onSurfaceVariant: Color(0xFFD6C2BD),

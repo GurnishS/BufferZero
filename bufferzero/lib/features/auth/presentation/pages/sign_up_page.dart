@@ -34,7 +34,9 @@ class _SignUpPageState extends State<SignUpPage>
 
   void _handleAuthSuccess() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.go(widget.redirectUrl);
+      if (mounted) {
+        context.go(widget.redirectUrl);
+      }
     });
   }
 

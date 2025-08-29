@@ -104,7 +104,10 @@ class AppUserChangeNotifier extends ChangeNotifier {
     _subscription = _appUserCubit.stream.listen((_) {
       // Use addPostFrameCallback to prevent setState during build
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        notifyListeners();
+        // Check if the notifier is still valid before calling notifyListeners
+        if (!_subscription.isPaused) {
+          notifyListeners();
+        }
       });
     });
   }
