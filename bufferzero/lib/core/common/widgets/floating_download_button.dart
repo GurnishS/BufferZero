@@ -1,5 +1,5 @@
+import 'package:bufferzero/core/common/widgets/bottom_download_sheet.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class FloatingDownloadButton extends StatefulWidget {
   const FloatingDownloadButton({super.key});
@@ -14,7 +14,7 @@ class _FloatingDownloadButtonState extends State<FloatingDownloadButton> {
     final colorScheme = Theme.of(context).colorScheme;
 
     return FloatingActionButton(
-      onPressed: () => context.push('/downloads'),
+      onPressed: () => {BottomDownloadSheet.show(context)},
       backgroundColor: colorScheme.primary,
       foregroundColor: colorScheme.onPrimary,
       elevation: 6,
