@@ -4,6 +4,7 @@ import 'package:bufferzero/core/common/entities/user.dart';
 import 'package:bufferzero/features/auth/domain/usecases/anonymous_sign_in.dart';
 import 'package:bufferzero/features/auth/domain/usecases/current_user.dart';
 import 'package:bufferzero/features/auth/domain/usecases/logout_user_usecase.dart';
+import 'package:bufferzero/features/auth/domain/usecases/send_password_reset_email.dart';
 import 'package:bufferzero/features/auth/domain/usecases/user_sign_in.dart';
 import 'package:bufferzero/features/auth/domain/usecases/user_sign_up.dart';
 import 'package:bufferzero/features/auth/domain/usecases/google_sign_in.dart';
@@ -24,6 +25,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final ResendEmailVerification _resendEmailVerification;
   final LogoutUserUsecase _logoutUserUsecase;
   final AppUserCubit _appUserCubit;
+  final SendPasswordResetEmail _sendPasswordResetEmail;
 
   AuthBloc({
     required UserSignUp userSignUp,
@@ -34,6 +36,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     required AnonymousSignIn anonymousSignIn,
     required ResendEmailVerification resendEmailVerification,
     required LogoutUserUsecase logoutUserUsecase,
+    required SendPasswordResetEmail sendPasswordResetEmail,
   }) : _userSignUp = userSignUp,
        _userSignIn = userSignIn,
        _currentUser = currentUser,
@@ -42,6 +45,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
        _anonymousSignIn = anonymousSignIn,
        _resendEmailVerification = resendEmailVerification,
        _logoutUserUsecase = logoutUserUsecase,
+       _sendPasswordResetEmail = sendPasswordResetEmail,
        super(AuthInitial()) {
     on<AuthSignUp>(_onAuthSignUp);
     on<AuthSignIn>(_onAuthSignIn);
@@ -52,6 +56,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthCheckEmailVerification>(_onAuthCheckEmailVerification);
     on<AuthLogout>(_onAuthLogout);
     on<ResetAuthState>(_onResetAuthState);
+    on<AuthSendPasswordResetEmail>(_onAuthSendPasswordResetEmail);
+    on<PasswordResetEvent>(_onPasswordResetEvent);
+  }
+
+  Future<void> _onPasswordResetEvent(
+    PasswordResetEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    emit(AuthPasswordResetEmailInitial());
   }
 
   Future<void> _onResetAuthState(
@@ -59,6 +72,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     emit(AuthInitial());
+  }
+
+  Future<void> _onAuthSendPasswordResetEmail(
+    AuthSendPasswordResetEmail event,
+    Emitter<AuthState> emit,
+  ) async {
+    emit(AuthLoading());
+    final res = await _sendPasswordResetEmail(event.email);
+    res.fold(
+      (failure) =>
+          emit(AuthPasswordResetEmailSentFailure(event.email, failure.message)),
+      (_) => emit(AuthPasswordResetEmailSentSuccess(event.email)),
+    );
   }
 
   Future<void> _onAuthLogout(AuthLogout event, Emitter<AuthState> emit) async {

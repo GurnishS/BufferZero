@@ -79,3 +79,36 @@ final class AuthResendEmailVerificationFailure extends EmailVerification {
   @override
   int get hashCode => Object.hash(email, message);
 }
+
+@immutable
+sealed class PasswordReset extends AuthState {
+  final String email;
+  const PasswordReset(this.email);
+}
+
+final class AuthPasswordResetEmailInitial extends PasswordReset {
+  const AuthPasswordResetEmailInitial() : super('');
+}
+
+final class AuthPasswordResetEmailLoading extends PasswordReset {
+  const AuthPasswordResetEmailLoading() : super('');
+}
+
+final class AuthPasswordResetEmailSentSuccess extends PasswordReset {
+  const AuthPasswordResetEmailSentSuccess(super.email);
+}
+
+final class AuthPasswordResetEmailSentFailure extends PasswordReset {
+  final String message;
+  const AuthPasswordResetEmailSentFailure(super.email, this.message);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is AuthPasswordResetEmailSentFailure &&
+        other.message == message;
+  }
+
+  @override
+  int get hashCode => message.hashCode;
+}

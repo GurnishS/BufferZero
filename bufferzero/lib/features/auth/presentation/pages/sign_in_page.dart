@@ -56,6 +56,8 @@ class _SignInPageState extends State<SignInPage>
         listener: (context, state) {
           if (state is AuthFailure) {
             _handleAuthFailure(state.message);
+          } else if (state is AuthPasswordResetEmailSentFailure) {
+            _handleAuthFailure(state.message);
           } else if (state is AuthSuccess) {
             _handleAuthSuccess();
           }
@@ -63,6 +65,18 @@ class _SignInPageState extends State<SignInPage>
         builder: (context, state) {
           if (state is AuthLoading || state is AuthSuccess) {
             return const Loader();
+          } else if (state is PasswordReset) {
+            return AuthResponsiveLayout(
+              fadeAnimation: fadeAnimation,
+              slideAnimation: slideAnimation,
+              scaleAnimation: scaleAnimation,
+              formContent: ForgetPasswordView(
+                onBack: () {
+                  context.read<AuthBloc>().add(ResetAuthState());
+                },
+                state: state,
+              ),
+            );
           }
 
           return AuthResponsiveLayout(
@@ -87,8 +101,6 @@ class SignInFormContent extends StatefulWidget {
 
 class _SignInFormContentState extends State<SignInFormContent>
     with TickerProviderStateMixin, AuthStaggerAnimationMixin {
-  bool _isForgetPasswordMode = false;
-
   @override
   void initState() {
     super.initState();
@@ -101,21 +113,11 @@ class _SignInFormContentState extends State<SignInFormContent>
     super.dispose();
   }
 
-  void _toggleForgetPassword() {
-    setState(() {
-      _isForgetPasswordMode = !_isForgetPasswordMode;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    if (_isForgetPasswordMode) {
-      return ForgetPasswordView(onBack: _toggleForgetPassword);
-    }
-
     return Center(
       child: Container(
-        constraints: BoxConstraints(maxWidth: 500),
+        constraints: const BoxConstraints(maxWidth: 500),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -133,7 +135,11 @@ class _SignInFormContentState extends State<SignInFormContent>
             const SizedBox(height: AuthConstants.largePadding),
             buildAnimatedWidget(
               3,
-              SignInForm(onForgotPassword: _toggleForgetPassword),
+              SignInForm(
+                onForgotPassword: () {
+                  context.read<AuthBloc>().add(PasswordResetEvent());
+                },
+              ),
             ),
             const SizedBox(height: AuthConstants.largePadding),
             buildAnimatedWidget(4, _buildDividerAndSocialButtons(context)),
@@ -307,8 +313,13 @@ class NewSignUpMessage extends StatelessWidget {
 }
 
 class ForgetPasswordView extends StatefulWidget {
+  final PasswordReset state;
   final VoidCallback onBack;
-  const ForgetPasswordView({super.key, required this.onBack});
+  const ForgetPasswordView({
+    super.key,
+    required this.onBack,
+    required this.state,
+  });
 
   @override
   State<ForgetPasswordView> createState() => _ForgetPasswordViewState();
@@ -327,28 +338,34 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
   void _handleSendResetLink() {
     if (!_formKey.currentState!.validate()) return;
 
-    // TODO: Implement forgot password functionality
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text("Password reset functionality will be implemented soon"),
-      ),
+    context.read<AuthBloc>().add(
+      AuthSendPasswordResetEmail(_emailController.text),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const SizedBox(height: AuthConstants.largePadding),
-        AuthBackHeader(title: "Forgot Password?", onBack: widget.onBack),
-        const SizedBox(height: AuthConstants.largePadding),
-        _buildDescription(context),
-        const SizedBox(height: AuthConstants.largePadding),
-        _buildForm(),
-        const SizedBox(height: AuthConstants.largePadding),
-      ],
+    return Center(
+      child: Container(
+        constraints: const BoxConstraints(maxWidth: 500),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: AuthConstants.largePadding),
+            AuthBackHeader(title: "Forgot Password?", onBack: widget.onBack),
+            const SizedBox(height: AuthConstants.largePadding),
+            (widget.state is AuthPasswordResetEmailSentSuccess)
+                ? const SizedBox()
+                : _buildDescription(context),
+            const SizedBox(height: AuthConstants.largePadding),
+            (widget.state is AuthPasswordResetEmailSentSuccess)
+                ? _buildPasswordResetSentMessage(context)
+                : _buildForm(),
+            const SizedBox(height: AuthConstants.largePadding),
+          ],
+        ),
+      ),
     );
   }
 
@@ -380,6 +397,36 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildPasswordResetSentMessage(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          "${AuthConstants.emailSentMessage} ${widget.state.email}.",
+          style: AuthTextStyles.description(context),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 8),
+        Text(
+          AuthConstants.verificationInstructions,
+          style: AuthTextStyles.description(context),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 16),
+        TextButton(
+          onPressed: () {
+            context.read<AuthBloc>().add(
+              AuthSendPasswordResetEmail(widget.state.email),
+            );
+          },
+          child: Text(
+            AuthConstants.resendEmailText,
+            style: AuthTextStyles.link(context),
+          ),
+        ),
+      ],
     );
   }
 }

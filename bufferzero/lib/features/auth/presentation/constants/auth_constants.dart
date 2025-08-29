@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 /// Constants used across authentication pages
 class AuthConstants {
   // Animation durations
-  static const Duration mainAnimationDuration = Duration(milliseconds: 1000);
-  static const Duration staggerAnimationDuration = Duration(milliseconds: 1200);
+  static const Duration mainAnimationDuration = Duration(milliseconds: 800);
+  static const Duration staggerAnimationDuration = Duration(milliseconds: 900);
 
   // Layout breakpoints
   static const double largeScreenBreakpoint = 800.0;
@@ -32,7 +32,7 @@ class AuthConstants {
   // Animation curves
   static const Curve fadeInCurve = Curves.easeOut;
   static const Curve slideInCurve = Curves.easeOutCubic;
-  static const Curve elasticCurve = Curves.elasticOut;
+  static const Curve elasticCurve = Curves.easeOutQuart;
 }
 
 /// Reusable input border styles

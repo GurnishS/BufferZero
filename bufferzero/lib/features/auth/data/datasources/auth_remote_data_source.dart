@@ -41,6 +41,9 @@ abstract interface class AuthRemoteDataSource {
 
   /// Resend email verification
   Future<void> resendEmailVerification({required String email});
+
+  // Forget Password
+  Future<void> sendPasswordResetEmail({required String email});
 }
 
 /// Implementation of authentication data source using Supabase
@@ -53,8 +56,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   static const _iosClientId =
       '827146341594-se5r95rug7iv02vkkbgfd4dah6h03l88.apps.googleusercontent.com';
   static const _redirectUrl = 'http://localhost:54321/auth/callback';
-  static const _emailRedirectUrl =
-      'http://localhost:3000/sign-in?new-sign-up=true';
+  static final _emailRedirectUrl = '${Uri.base}/sign-in?new-sign-up=true';
+
+  static final _passwordResetRedirectUrl = '${Uri.base}/dashboard';
 
   AuthRemoteDataSourceImpl({required this.supabaseClient});
 
@@ -170,6 +174,21 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       await supabaseClient.auth.resend(type: OtpType.signup, email: email);
     } catch (e) {
       throw ServerException('Failed to resend verification: ${e.toString()}');
+    }
+  }
+
+  @override
+  Future<void> sendPasswordResetEmail({required String email}) async {
+    try {
+      print("Sending password reset email to $email");
+      await supabaseClient.auth.resetPasswordForEmail(
+        email,
+        redirectTo: _passwordResetRedirectUrl,
+      );
+    } catch (e) {
+      throw ServerException(
+        'Failed to send password reset email: ${e.toString()}',
+      );
     }
   }
 

@@ -53,3 +53,13 @@ final class AuthLogout extends AuthEvent {}
 
 /// Event to reset auth state to initial
 final class ResetAuthState extends AuthEvent {}
+
+// Event to toggle forget Password
+final class PasswordResetEvent extends AuthEvent {}
+
+/// Event to send password reset mail
+final class AuthSendPasswordResetEmail extends AuthEvent {
+  final String email;
+  AuthSendPasswordResetEmail(this.email)
+      : assert(email.isNotEmpty, 'Email cannot be empty');
+}

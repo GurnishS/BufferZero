@@ -7,6 +7,7 @@ import 'package:bufferzero/features/auth/domain/usecases/anonymous_sign_in.dart'
 import 'package:bufferzero/features/auth/domain/usecases/current_user.dart';
 import 'package:bufferzero/features/auth/domain/usecases/google_sign_in.dart';
 import 'package:bufferzero/features/auth/domain/usecases/resend_email_verification.dart';
+import 'package:bufferzero/features/auth/domain/usecases/send_password_reset_email.dart';
 import 'package:bufferzero/features/auth/domain/usecases/user_sign_in.dart';
 import 'package:bufferzero/features/auth/domain/usecases/user_sign_up.dart';
 import 'package:bufferzero/features/auth/presentation/bloc/auth_bloc.dart';
@@ -50,6 +51,7 @@ void _initAuth() {
     ..registerFactory(() => CurrentUser(serviceLocator()))
     ..registerFactory(() => ResendEmailVerification(serviceLocator()))
     ..registerFactory(() => LogoutUserUsecase(serviceLocator()))
+    ..registerFactory(() => SendPasswordResetEmail(serviceLocator()))
     // Bloc
     ..registerLazySingleton(
       () => AuthBloc(
@@ -61,6 +63,7 @@ void _initAuth() {
         anonymousSignIn: serviceLocator(),
         resendEmailVerification: serviceLocator(),
         logoutUserUsecase: serviceLocator(),
+        sendPasswordResetEmail: serviceLocator(),
       ),
     );
 }
