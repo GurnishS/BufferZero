@@ -1,3 +1,4 @@
+import 'package:bufferzero/core/common/widgets/custom_format_selection_sheet.dart';
 import 'package:flutter/material.dart';
 
 import 'add_new_download_task_sheet.dart';
@@ -19,6 +20,10 @@ class BottomDownloadSheet {
     // First show the Add New Download sheet. It returns true when the user
     // taps Continue.
     final continuePressed = await showAddNewDownloadTaskSheet<bool>(context);
+    // final continuePressed = await showCustomFormatSelectionSheet(
+    //   context,
+    //   downloadType: DownloadType.video,
+    // );
 
     if (continuePressed == true) {
       // Open the Configure sheet and return its result.
